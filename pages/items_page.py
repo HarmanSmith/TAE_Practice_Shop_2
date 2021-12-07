@@ -18,16 +18,19 @@ class ItemsPage:
         select.select_by_visible_text(option)
 
     def check_items_sorted(self):
-        list_of_elements = self.browser.find_elements_by_xpath(self.add_to_cart_xpath)
+        list_of_elements = self.browser.find_elements_by_xpath(self.price_xpath)
+        test_ok = False
+        previous_value = float((list_of_elements[0].text).lstrip('$'))
         for item_number in range(len(list_of_elements)):
-            previous_value = 0
-            if int(list_of_elements[item_number].text()) < previous_value:
-                return True
-            previous_value = int(list_of_elements[item_number].text())
-        return False
+            if float((list_of_elements[item_number].text).lstrip('$')) <= previous_value:
+                self.test_ok = True
+            else:
+                self.test_ok = False
+            previous_value = float((list_of_elements[item_number].text).lstrip('$'))
+        return test_ok
 
     def add_to_cart(self, index):
-        self.browser.find_element_by_xpath(self.add_to_cart_xpath)[index].click()
+        self.browser.find_elements_by_xpath(self.add_to_cart_xpath)[index].click()
 
     def click_cart(self):
         self.browser.find_element(*self.cart_locator).click()

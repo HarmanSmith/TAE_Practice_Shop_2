@@ -24,7 +24,7 @@ def test_shopping_cart(browser):
     # When the user selects order by price
     items_page.sort_items("Price (low to high)")
     # Then the items are sorted by price
-    items_page.check_items_sorted()
+    assert items_page.check_items_sorted()
     # When the user adds the cheapest item to the cart
     items_page.add_to_cart(0)
     # And clicks in the cart icon
