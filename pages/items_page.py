@@ -23,9 +23,10 @@ class ItemsPage:
         previous_value = float((list_of_elements[0].text).lstrip('$'))
         for item_number in range(len(list_of_elements)):
             if float((list_of_elements[item_number].text).lstrip('$')) <= previous_value:
-                self.test_ok = True
+                test_ok = True
+                break
             else:
-                self.test_ok = False
+                test_ok = False
             previous_value = float((list_of_elements[item_number].text).lstrip('$'))
         return test_ok
 
