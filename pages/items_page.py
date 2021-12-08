@@ -30,6 +30,10 @@ class ItemsPage:
             previous_value = float((list_of_elements[item_number].text).lstrip('$'))
         return test_ok
 
+    def get_item_price(self, index):
+        return float((self.browser.find_elements_by_xpath(self.price_xpath)[index].text).lstrip('$'))
+        pass
+
     def add_to_cart(self, index):
         self.browser.find_elements_by_xpath(self.add_to_cart_xpath)[index].click()
 

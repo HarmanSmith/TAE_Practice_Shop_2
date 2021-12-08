@@ -26,11 +26,11 @@ def test_shopping_cart(browser):
     # Then the items are sorted by price
     assert items_page.check_items_sorted()
     # When the user adds the cheapest item to the cart
+    cheapest_price = items_page.get_item_price(0)
     items_page.add_to_cart(0)
     # And clicks in the cart icon
     items_page.click_cart()
     # Then the cart page loads with the selected item
     cart_page = CartPage(browser)
-    cart_page.check_item("item_name")
-
-    pass
+    assert cart_page.check_price(cheapest_price)
+    cart_page.click_checkout()
