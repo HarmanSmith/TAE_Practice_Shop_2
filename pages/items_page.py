@@ -22,18 +22,23 @@ class ItemsPage:
         """Checks that the items are ordered with the cheapest first."""
         list_of_elements = self.browser.find_elements_by_xpath(self.price_xpath)
         test_ok = False
-        previous_value = float((list_of_elements[0].text).lstrip('$'))
+
+        def extract_value(index):
+            return float(list_of_elements[index].text.lstrip('$'))
+
+        previous_value = extract_value(0)
         for item_number in range(len(list_of_elements)):
-            if float((list_of_elements[item_number].text).lstrip('$')) <= previous_value:
+            current_value = extract_value(item_number)
+            if current_value >= previous_value:
                 test_ok = True
-                break
             else:
                 test_ok = False
             previous_value = float((list_of_elements[item_number].text).lstrip('$'))
+            previous_value = current_value
         return test_ok
 
     def get_item_price(self, index):
-        return float((self.browser.find_elements_by_xpath(self.price_xpath)[index].text).lstrip('$'))
+        return float(self.browser.find_elements_by_xpath(self.price_xpath)[index].text.lstrip('$'))
         pass
 
     def add_to_cart(self, index):
