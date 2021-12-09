@@ -1,6 +1,7 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
 
+
 class ItemsPage:
 
     def __init__(self, browser):
@@ -17,7 +18,8 @@ class ItemsPage:
         select = Select(self.browser.find_element(*self.order_locator))
         select.select_by_visible_text(option)
 
-    def check_items_sorted(self):
+    def check_items_sorted_lowest(self):
+        """Checks that the items are ordered with the cheapest first."""
         list_of_elements = self.browser.find_elements_by_xpath(self.price_xpath)
         test_ok = False
         previous_value = float((list_of_elements[0].text).lstrip('$'))
