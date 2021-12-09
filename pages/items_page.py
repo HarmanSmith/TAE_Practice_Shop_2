@@ -33,7 +33,6 @@ class ItemsPage:
                 test_ok = True
             else:
                 test_ok = False
-            previous_value = float((list_of_elements[item_number].text).lstrip('$'))
             previous_value = current_value
         return test_ok
 
