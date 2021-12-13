@@ -2,6 +2,7 @@ from user import StandardUser
 from pages.login_page import LoginPage
 from pages.items_page import ItemsPage
 
+
 def test_login_successful(browser):
     # Background: username and password required
     # Given username and password
@@ -17,5 +18,7 @@ def test_login_successful(browser):
     # When the user logs in
     login_page.login(user.get_username_standard(), user.get_password())
     # Then the item list page loads
-    # todo assert website loaded
-    pass
+    items_page = ItemsPage(browser)
+    # Then the item list page loads
+    assert items_page.check_page_loaded()
+
