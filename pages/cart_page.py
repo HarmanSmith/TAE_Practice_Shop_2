@@ -2,6 +2,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
+
 class CartPage:
 
     prices_locator = (By.XPATH, "//div[contains(@class, 'inventory_item_price')]")
@@ -22,7 +23,7 @@ class CartPage:
 
     def check_price_in_list(self, price, index):
         same_price = False
-        #element = WebDriverWait(self.browser, 10).until(EC.presence_of_element_located(self.prices_locator))
+        # element = WebDriverWait(self.browser, 10).until(EC.presence_of_element_located(self.prices_locator))
         elements = WebDriverWait(self.browser, 10).until(EC.presence_of_all_elements_located(self.prices_locator))
 
         if price == float(elements[index].text.lstrip('$')):
@@ -36,7 +37,7 @@ class CartPage:
         test_ok = False
         price1_ok = self.check_price_in_list(price1, 0)
         price2_ok = self.check_price_in_list(price2, 1)
-        if price1_ok == True & price2_ok == True:
+        if price1_ok is True & price2_ok is True:
             test_ok = True
         else:
             test_ok = False
