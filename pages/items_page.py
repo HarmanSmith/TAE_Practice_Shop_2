@@ -11,9 +11,9 @@ class ItemsPage:
 
     order_locator = (By.XPATH, "//select[contains(@class, 'product_sort_container')]")
     cart_locator = (By.XPATH, "//a[contains(@class, 'shopping_cart_link')]")
+    price_xpath_first = "(//div[contains(@class, 'inventory_item_price')])[1]"
     # the following provide multiple elements per locator
     price_xpath = "//div[contains(@class, 'inventory_item_price')]"
-    price_xpath_first = "(//div[contains(@class, 'inventory_item_price')])[1]"
     add_to_cart_xpath = "//button[contains(@class, 'btn_inventory')]"
     item_names_xpath = "//div[contains(@class, 'inventory_item_name']"
 
