@@ -21,4 +21,3 @@ def test_login_successful(browser):
     items_page = ItemsPage(browser)
     # Then the item list page loads
     assert items_page.check_page_loaded()
-

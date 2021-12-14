@@ -1,6 +1,8 @@
+from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+
 
 class LoginPage:
     url = "https://www.saucedemo.com"
@@ -38,7 +40,7 @@ class LoginPage:
 
     def check_login_error(self):
         try:
-            element = self.browser.find_element_by_xpath(self.error_xpath)
+            self.browser.find_element_by_xpath(self.error_xpath)
         except NoSuchElementException:
             return False
         return True

@@ -20,4 +20,3 @@ def test_login_failed(browser):
     login_page.login(user.get_username_standard(), str(user.get_password() + "X"))
     # Then we get a Login error
     assert login_page.check_login_error()
-

@@ -8,7 +8,7 @@ class CartPage:
     prices_locator = (By.XPATH, "//div[contains(@class, 'inventory_item_price')]")
     checkout_locator = (By.ID, "checkout")
     remove_buttons_locator = (By.XPATH, "//button[contains(@class, 'btn btn_secondary btn_small cart_button')]")
-    item_name_xpath_string = ("//div[contains(@class, 'inventory_item_name')]")
+    item_name_xpath_string = "//div[contains(@class, 'inventory_item_name')]"
 
     def __init__(self, browser):
         self.browser = browser

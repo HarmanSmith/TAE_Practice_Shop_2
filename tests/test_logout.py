@@ -25,4 +25,3 @@ def test_logout(browser):
     login_page = LoginPage(browser)
     # Then the user is logged out
     assert login_page.check_login_button()
-

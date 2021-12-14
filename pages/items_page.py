@@ -14,7 +14,7 @@ class ItemsPage:
     cart_locator = (By.XPATH, "//a[contains(@class, 'shopping_cart_link')]")
     burger_locator = (By.ID, "react-burger-menu-btn")
     onesie_locator = (By.XPATH, "//button[contains(@data-test, 'add-to-cart-sauce-labs-onesie')]")
-    logout_id_string = ("logout_sidebar_link")
+    logout_id_string = "logout_sidebar_link"
     price_xpath_first = "(//div[contains(@class, 'inventory_item_price')])[1]"
     # the following provide multiple elements per locator
     price_xpath = "//div[contains(@class, 'inventory_item_price')]"
@@ -31,7 +31,7 @@ class ItemsPage:
         # return wait.until(EC.visibility_of_element_located(price_element))
         # return wait.until(EC._element_if_visible(self.browser.find_element(price_element)))
         try:
-            element = self.browser.find_element_by_xpath("//a[contains(@class, 'shopping_cart_link')]")
+            self.browser.find_element_by_xpath("//a[contains(@class, 'shopping_cart_link')]")
         except NoSuchElementException:
             return False
         return True
@@ -40,6 +40,7 @@ class ItemsPage:
         """Checks that the items are ordered with the cheapest first."""
         list_of_elements = self.browser.find_elements_by_xpath(self.price_xpath)
         test_ok = False
+
         def extract_value(index):
             return float(list_of_elements[index].text.lstrip('$'))
         previous_value = extract_value(0)
@@ -69,4 +70,5 @@ class ItemsPage:
         self.browser.find_element(*self.burger_locator).click()
 
     def click_logout(self):
-        WebDriverWait(self.browser, 10).until(EC.visibility_of(self.browser.find_element_by_id(self.logout_id_string))).click()
+        WebDriverWait(self.browser, 10).until(EC.visibility_of(self.browser.find_element_by_id
+                                                               (self.logout_id_string))).click()
