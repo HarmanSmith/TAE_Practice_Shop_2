@@ -1,3 +1,4 @@
+from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.support.ui import WebDriverWait
@@ -22,10 +23,15 @@ class ItemsPage:
         select.select_by_visible_text(option)
 
     def check_page_loaded(self):
-        wait = WebDriverWait(self.browser, 10)
-        price_element = self.browser.find_element_by_xpath(self.price_xpath_first)
+        # wait = WebDriverWait(self.browser, 10)
+        # price_element = self.browser.find_element_by_xpath(self.price_xpath_first)
         # return wait.until(EC.visibility_of_element_located(price_element))
-        return wait.until(EC._element_if_visible(self.browser.find_element(price_element)))
+        # return wait.until(EC._element_if_visible(self.browser.find_element(price_element)))
+        try:
+            element = self.browser.find_element_by_xpath("//a[contains(@class, 'shopping_cart_link')]")
+        except NoSuchElementException:
+            return False
+        return True
 
     def check_items_sorted_lowest(self):
         """Checks that the items are ordered with the cheapest first."""
