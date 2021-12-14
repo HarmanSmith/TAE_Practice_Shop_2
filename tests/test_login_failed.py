@@ -1,4 +1,3 @@
-# from behave import *
 from user import StandardUser
 from pages.login_page import LoginPage
 
