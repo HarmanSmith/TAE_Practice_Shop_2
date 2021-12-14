@@ -25,7 +25,7 @@ class CartPage:
     def check_price_in_list(self, price, index):
         same_price = False
         # element = WebDriverWait(self.browser, 10).until(EC.presence_of_element_located(self.prices_locator))
-        elements = WebDriverWait(self.browser, 10).until(EC.presence_of_all_elements_located(self.prices_locator)).is_displayed()
+        elements = WebDriverWait(self.browser, 10).until(EC.presence_of_all_elements_located(self.prices_locator))
 
         if price == float(elements[index].text.lstrip('$')):
             same_price = True
