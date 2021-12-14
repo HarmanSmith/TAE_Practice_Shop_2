@@ -3,10 +3,8 @@ from pages.login_page import LoginPage
 
 
 def test_login_failed(browser):
-    # Background: username and password required
-    # Given username and password
+    # Background: username required
     user = StandardUser()
-    # And login into the website
 
     # Scenario: User should not be able to login with an incorrect password
 
