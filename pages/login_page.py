@@ -14,6 +14,8 @@ class LoginPage:
     username_locator = (By.ID, "user-name")
     password_locator = (By.ID, "password")
     login_locator = (By.ID, "login-button")
+    error_locator = (By.XPATH, "//h3[contains(@data-test, 'error')]")
+    error_xpath = ("//h3[contains(@data-test, 'error')]")
 
     def check_login_button(self):
         wait = WebDriverWait(self.browser, 10)
@@ -33,3 +35,10 @@ class LoginPage:
         self.enter_username(username)
         self.enter_password(password)
         self.click_login()
+
+    def check_login_error(self):
+        try:
+            element = self.browser.find_element_by_xpath(self.error_xpath)
+        except NoSuchElementException:
+            return False
+        return True

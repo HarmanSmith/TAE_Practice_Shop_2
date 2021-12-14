@@ -19,5 +19,5 @@ def test_shopping_cart(browser):
     # When the user logs in
     login_page.login(user.get_username_standard(), str(user.get_password() + "X"))
     # Then we get a Login error
-    # todo assert login error screen
-    pass
+    assert login_page.check_login_error()
+
