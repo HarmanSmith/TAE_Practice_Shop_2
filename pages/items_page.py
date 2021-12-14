@@ -12,6 +12,8 @@ class ItemsPage:
 
     order_locator = (By.XPATH, "//select[contains(@class, 'product_sort_container')]")
     cart_locator = (By.XPATH, "//a[contains(@class, 'shopping_cart_link')]")
+    burger_locator = (By.ID, "react-burger-menu-btn")
+    logout_id_string = ("logout_sidebar_link")
     price_xpath_first = "(//div[contains(@class, 'inventory_item_price')])[1]"
     # the following provide multiple elements per locator
     price_xpath = "//div[contains(@class, 'inventory_item_price')]"
@@ -58,3 +60,9 @@ class ItemsPage:
 
     def click_cart(self):
         self.browser.find_element(*self.cart_locator).click()
+
+    def click_burger(self):
+        self.browser.find_element(*self.burger_locator).click()
+
+    def click_logout(self):
+        WebDriverWait(self.browser, 10).until(EC.visibility_of(self.browser.find_element_by_id(self.logout_id_string))).click()

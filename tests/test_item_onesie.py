@@ -4,7 +4,7 @@ from pages.items_page import ItemsPage
 from pages.cart_page import CartPage
 
 
-def test_shopping_cart(browser):
+def test_item_onesie(browser):
     # Background: username and password required
     # Given username and password
     user = StandardUser()

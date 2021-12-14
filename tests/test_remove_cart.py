@@ -4,7 +4,7 @@ from pages.items_page import ItemsPage
 from pages.cart_page import CartPage
 
 
-def test_cart_remove(browser):
+def test_remove_cart(browser):
     # Background: username and password required
     # Given username and password
     user = StandardUser()

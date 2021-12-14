@@ -3,7 +3,7 @@ from pages.login_page import LoginPage
 from pages.items_page import ItemsPage
 
 
-def test_shopping_cart(browser):
+def test_logout(browser):
     # Background: username and password required
     # Given username and password
     user = StandardUser()
@@ -20,7 +20,9 @@ def test_shopping_cart(browser):
     # Then the item list page loads
     items_page = ItemsPage(browser)
     # When the user clicks log out
-
+    items_page.click_burger()
+    items_page.click_logout()
+    login_page = LoginPage(browser)
     # Then the user is logged out
-    # todo assert the user is logged out
-    pass
+    assert login_page.check_login_button()
+
