@@ -8,6 +8,7 @@ class CartPage:
     prices_locator = (By.XPATH, "//div[contains(@class, 'inventory_item_price')]")
     checkout_locator = (By.ID, "checkout")
     remove_buttons_locator = (By.XPATH, "//button[contains(@class, 'btn btn_secondary btn_small cart_button')]")
+    item_name_xpath_string = ("//div[contains(@class, 'inventory_item_name')]")
 
     def __init__(self, browser):
         self.browser = browser
@@ -48,3 +49,12 @@ class CartPage:
 
     def click_checkout(self):
         WebDriverWait(self.browser, 10).until(EC.presence_of_element_located(self.checkout_locator)).click()
+
+    def check_for_item_in_cart(self, partial_string):
+        cart_elements = self.browser.find_elements_by_xpath(self.item_name_xpath_string)
+        for element_number in range(len(cart_elements)):
+            if partial_string in cart_elements[element_number].text:
+                return True
+            else:
+                return False
+        pass

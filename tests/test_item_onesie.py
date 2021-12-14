@@ -21,8 +21,9 @@ def test_item_onesie(browser):
     # Then the item list page loads
     items_page = ItemsPage(browser)
     # When the user adds onesie to the shopping cart
-
+    items_page.add_onesie_to_cart()
     # And clicks the cart button
-
+    items_page.click_cart()
+    cart_page = CartPage(browser)
     # Then the cart displays the onesie inside
-    # todo asssert the onesie is in the cart
+    assert cart_page.check_for_item_in_cart("Onesie")

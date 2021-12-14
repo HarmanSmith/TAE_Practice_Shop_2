@@ -13,6 +13,7 @@ class ItemsPage:
     order_locator = (By.XPATH, "//select[contains(@class, 'product_sort_container')]")
     cart_locator = (By.XPATH, "//a[contains(@class, 'shopping_cart_link')]")
     burger_locator = (By.ID, "react-burger-menu-btn")
+    onesie_locator = (By.XPATH, "//button[contains(@data-test, 'add-to-cart-sauce-labs-onesie')]")
     logout_id_string = ("logout_sidebar_link")
     price_xpath_first = "(//div[contains(@class, 'inventory_item_price')])[1]"
     # the following provide multiple elements per locator
@@ -57,6 +58,9 @@ class ItemsPage:
 
     def add_to_cart(self, index):
         self.browser.find_elements_by_xpath(self.add_to_cart_xpath)[index].click()
+
+    def add_onesie_to_cart(self):
+        self.browser.find_element(*self.onesie_locator).click()
 
     def click_cart(self):
         self.browser.find_element(*self.cart_locator).click()
