@@ -8,6 +8,7 @@ class CartPage:
     prices_locator = (By.XPATH, "//div[contains(@class, 'inventory_item_price')]")
     checkout_locator = (By.ID, "checkout")
     remove_buttons_locator = (By.XPATH, "//button[contains(@class, 'btn btn_secondary btn_small cart_button')]")
+    remove_buttons_string = ("//button[contains(@class, 'btn btn_secondary btn_small cart_button')]")
     item_name_xpath_string = "//div[contains(@class, 'inventory_item_name')]"
 
     def __init__(self, browser):
@@ -45,7 +46,8 @@ class CartPage:
         return test_ok
 
     def click_remove_item(self, index):
-        self.browser.find_elements_by_id(self.remove_buttons_locator)[index].click()
+        elements = self.browser.find_elements_by_xpath(self.remove_buttons_string)
+        elements[index].click()
 
     def click_checkout(self):
         WebDriverWait(self.browser, 10).until(EC.presence_of_element_located(self.checkout_locator)).click()
@@ -57,4 +59,15 @@ class CartPage:
                 return True
             else:
                 return False
-        pass
+
+    def get_item_name(self, index):
+        cart_elements = self.browser.find_elements_by_xpath(self.item_name_xpath_string)
+        return cart_elements[index].text
+
+    def check_for_item_removed(self, partial_string):
+        cart_elements = self.browser.find_elements_by_xpath(self.item_name_xpath_string)
+        for element_number in range(len(cart_elements)):
+            if partial_string in cart_elements[element_number].text:
+                return False
+            else:
+                return True

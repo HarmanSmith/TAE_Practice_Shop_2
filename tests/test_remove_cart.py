@@ -35,5 +35,7 @@ def test_remove_cart(browser):
     cart_page = CartPage(browser)
     assert cart_page.check_two_prices(cheapest_price, second_cheapest_price)
     # When the user removes an item from the cart
-
+    removed_name = cart_page.get_item_name(1)
+    cart_page.click_remove_item(1)
     # Then the item is effectively removed
+    assert cart_page.check_for_item_removed(removed_name)
