@@ -69,5 +69,4 @@ class CartPage:
         for element_number in range(len(cart_elements)):
             if partial_string in cart_elements[element_number].text:
                 return False
-            else:
-                return True
+        return True
