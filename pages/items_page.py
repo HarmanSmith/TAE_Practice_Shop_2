@@ -22,14 +22,12 @@ class ItemsPage:
     item_names_xpath = "//div[contains(@class, 'inventory_item_name']"
 
     def sort_items(self, option):
+        """Using the option argument sorts the items. Requires a valid string."""
         select = Select(self.browser.find_element(*self.order_locator))
         select.select_by_visible_text(option)
 
     def check_page_loaded(self):
-        # wait = WebDriverWait(self.browser, 10)
-        # price_element = self.browser.find_element_by_xpath(self.price_xpath_first)
-        # return wait.until(EC.visibility_of_element_located(price_element))
-        # return wait.until(EC._element_if_visible(self.browser.find_element(price_element)))
+        """Checks whether the shopping cart icon has loaded"""
         try:
             self.browser.find_element_by_xpath("//a[contains(@class, 'shopping_cart_link')]")
         except NoSuchElementException:
@@ -55,7 +53,6 @@ class ItemsPage:
 
     def get_item_price(self, index):
         return float(self.browser.find_elements_by_xpath(self.price_xpath)[index].text.lstrip('$'))
-        pass
 
     def add_to_cart(self, index):
         self.browser.find_elements_by_xpath(self.add_to_cart_xpath)[index].click()
@@ -70,5 +67,6 @@ class ItemsPage:
         self.browser.find_element(*self.burger_locator).click()
 
     def click_logout(self):
+        # long line below
         WebDriverWait(self.browser, 10).until(EC.visibility_of(self.browser.find_element_by_id
                                                                (self.logout_id_string))).click()
