@@ -21,13 +21,11 @@ class ItemsPage:
     add_to_cart_xpath = "//button[contains(@class, 'btn_inventory')]"
     item_names_xpath = "//div[contains(@class, 'inventory_item_name']"
 
-    def sort_items(self, option):
-        """Using the option argument sorts the items. Requires a valid string."""
+    def sort_items(self, option: str):
         select = Select(self.browser.find_element(*self.order_locator))
         select.select_by_visible_text(option)
 
     def check_page_loaded(self):
-        """Checks whether the shopping cart icon has loaded"""
         try:
             self.browser.find_element_by_xpath("//a[contains(@class, 'shopping_cart_link')]")
         except NoSuchElementException:
@@ -39,8 +37,9 @@ class ItemsPage:
         list_of_elements = self.browser.find_elements_by_xpath(self.price_xpath)
         test_ok = False
 
-        def extract_value(index):
+        def extract_value(index: int):
             return float(list_of_elements[index].text.lstrip('$'))
+
         previous_value = extract_value(0)
         for item_number in range(len(list_of_elements)):
             current_value = extract_value(item_number)
@@ -51,10 +50,10 @@ class ItemsPage:
             previous_value = current_value
         return test_ok
 
-    def get_item_price(self, index):
+    def get_item_price(self, index: int):
         return float(self.browser.find_elements_by_xpath(self.price_xpath)[index].text.lstrip('$'))
 
-    def add_to_cart(self, index):
+    def add_to_cart(self, index: int):
         self.browser.find_elements_by_xpath(self.add_to_cart_xpath)[index].click()
 
     def add_onesie_to_cart(self):
